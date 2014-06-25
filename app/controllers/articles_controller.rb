@@ -1,7 +1,11 @@
 class ArticlesController < ApplicationController
 	
 	def index
-		@articles = Article.all
+		unless current_user.blank?
+			@articles = current_user.articles
+		else
+			@articles = Article.all
+		end
 	end
 
 	def new
@@ -14,14 +18,17 @@ class ArticlesController < ApplicationController
 	
 	def edit
 		if user_signed_in? 
-			@article = Article.find(params[:id])
+			@article = current_user.articles.find(params[:id])
+			if @article.blank?
+				redirect_to new_user_session_path
+			end
 		else
 			redirect_to new_user_session_path
 		end
 	end
 	
 	def update
-		@article = Article.find(params[:id])
+		@article = current_user.articles.find(params[:id])
 		
 		if @article.update(article_params)
 			redirect_to @article
@@ -31,7 +38,7 @@ class ArticlesController < ApplicationController
 	end
 	
 	def create
-		@article = Article.new(article_params)
+		@article = current_user.articles.new(article_params)
 	 
 		if @article.save
 			redirect_to @article
@@ -42,12 +49,16 @@ class ArticlesController < ApplicationController
 	
 	def destroy
 		if user_signed_in? 
-			@article = Article.find(params[:id])
-			@article.destroy
+			@article = current_user.articles.find(params[:id])
+			if @article.blank?
+				redirect_to new_user_session_path
+			else
+				@article.destroy
 		
-			redirect_to @article
+				redirect_to @article
+			end
 		else
-			redirect_to new_user_session_path
+			
 		end
 	end
 	 
