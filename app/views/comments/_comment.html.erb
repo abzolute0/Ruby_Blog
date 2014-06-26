@@ -1,15 +1,64 @@
-	<p>
-		<strong>Commenter:</strong>
-		<%= comment.commenter %>
-	</p>
+	<% if user_signed_in? %>
+		<% unless (comment.user_id == current_user.id) || (comment.approved == 1) || (comment.article.user_id == current_user.id) %>
+			<p>
+				<strong>Commenter:</strong>
+				<%= comment.commenter %>
+			</p>
+			
+			<p>
+				<strong>Comment:</strong>	
+				<% if comment.approved == 0 %>
+					This comment hasn't been approved yet
+				<% end %>
+			</p>
+		<% else %>
+			<p>
+				<strong>Commenter:</strong>
+				<%= comment.commenter %>
+			</p>
+			
+			<p>
+				<strong>Comment:</strong>
+				<%= comment.body %>
+				<% if comment.approved == 0 && (comment.article.user_id == current_user.id) && (comment.user_id != current_user.id)  %>
+					<p style="color:red;"> This comment hasn't been approved yet <p>
+				<% end %>
+			</p>
+		<% end %>
+	<% else %>
+		<p>
+			<strong>Commenter:</strong>
+			<%= comment.commenter %>
+		</p>
+		
+		<p>
+			<strong>Comment:</strong>
+			<%= comment.body %>
+			<% if comment.approved == 0 %>
+				<p style="color:red;"> This comment hasn't been approved yet <p>
+			<% end %>
+		</p>
+	<% end %>
 	
 	<p>
-		<strong>Comment:</strong>
-		<%= comment.body %>
-	</p>
-	
-	<p>
-		<%= link_to 'Destroy Comment', [comment.article, comment],
-					method: :delete,
-					data: { confirm: 'Are you sure?' } %>
+		<% if user_signed_in? %>
+			<% if (comment.user_id == current_user.id) || (comment.approved == 1)  %>
+				<% if (comment.article.user_id == current_user.id) %>
+					<%= link_to 'Destroy Comment', [comment.article, comment],
+							method: :delete,
+							data: { confirm: 'Are you sure?' } %>
+					<hr /> 
+				<% end %>
+			<% else %>
+				<% if (comment.user_id == current_user.id) || (comment.approved == 0) %>
+					<%= link_to 'Approve Comment', [comment.article, comment],
+								method: :patch %>
+					<%= link_to 'Reject Comment', [comment.article, comment],
+								method: :delete,
+								data: { confirm: 'Are you sure?' } %>
+								
+					<hr />
+				<% end %>
+			<% end %>
+		<% end %>
 	</p>

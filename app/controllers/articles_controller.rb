@@ -1,17 +1,14 @@
 class ArticlesController < ApplicationController
 	
 	def index
-		unless current_user.blank?
-			@articles = current_user.articles
-		else
-			@articles = Article.all
-		end
+		@articles = Article.all
 	end
 
 	def new
 		if user_signed_in? 
 			@article = Article.new
 		else
+			flash[:notice] = "You're not signed in, Please sign in first to create new Article"
 			redirect_to new_user_session_path
 		end
 	end
@@ -50,15 +47,16 @@ class ArticlesController < ApplicationController
 	def destroy
 		if user_signed_in? 
 			@article = current_user.articles.find(params[:id])
+			@comment = Comment.all
 			if @article.blank?
 				redirect_to new_user_session_path
 			else
 				@article.destroy
-		
+				
 				redirect_to @article
 			end
 		else
-			
+			redirect_to new_user_session_path
 		end
 	end
 	 
