@@ -44,10 +44,12 @@
 		<% if user_signed_in? %>
 			<% if (comment.user_id == current_user.id) || (comment.approved == 1)  %>
 				<% if (comment.article.user_id == current_user.id) %>
-					<%= link_to 'Destroy Comment', [comment.article, comment],
-							method: :delete,
-							data: { confirm: 'Are you sure?' } %>
-					<hr /> 
+					<span type="button" class="btn btn-warning">
+						<%= link_to 'Destroy Comment', [comment.article, comment],
+								method: :delete,
+								data: { confirm: 'Are you sure?' } %>
+						<hr />
+					</span>
 				<% end %>
 			<% else %>
 				<% if (comment.user_id == current_user.id) || (comment.approved == 0) %>
