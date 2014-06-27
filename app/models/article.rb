@@ -4,6 +4,9 @@ class Article < ActiveRecord::Base
 	validates :title 	,presence: true,
 						length: { minimum: 5 }
 						
+	has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100>" } 
+	validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/					
+						
 	def	method1
 		puts 'This is method1'
 	end

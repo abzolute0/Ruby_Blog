@@ -1,0 +1,21 @@
+# Test environment
+top_srcdir='/home/wishnu/blog/ImageMagick-6.8.9-4'
+top_builddir='/home/wishnu/blog/ImageMagick-6.8.9-4'
+
+set -a
+COMPARE="/home/wishnu/blog/ImageMagick-6.8.9-4/utilities/compare"
+COMPOSITE="/home/wishnu/blog/ImageMagick-6.8.9-4/utilities/composite"
+CONJURE="/home/wishnu/blog/ImageMagick-6.8.9-4/utilities/conjure"
+CONVERT="/home/wishnu/blog/ImageMagick-6.8.9-4/utilities/convert"
+DISPLAY="/home/wishnu/blog/ImageMagick-6.8.9-4/utilities/display"
+IDENTIFY="/home/wishnu/blog/ImageMagick-6.8.9-4/utilities/identify"
+MONTAGE="/home/wishnu/blog/ImageMagick-6.8.9-4/utilities/montage" 
+VALIDATE="/home/wishnu/blog/ImageMagick-6.8.9-4/tests/validate"
+DRAWTEST="/home/wishnu/blog/ImageMagick-6.8.9-4/tests/drawtest"
+WANDTEST="/home/wishnu/blog/ImageMagick-6.8.9-4/tests/wandtest"
+LD_LIBRARY_PATH="/home/wishnu/blog/ImageMagick-6.8.9-4/magick/.libs:${LD_LIBRARY_PATH}"
+MAGICK_CODER_MODULE_PATH="/home/wishnu/blog/ImageMagick-6.8.9-4/coders"
+MAGICK_CONFIGURE_PATH="/home/wishnu/blog/ImageMagick-6.8.9-4/config:/home/wishnu/blog/ImageMagick-6.8.9-4/config"
+MAGICK_FILTER_MODULE_PATH="/home/wishnu/blog/ImageMagick-6.8.9-4/filters"
+PATH="/home/wishnu/blog/ImageMagick-6.8.9-4/utilities:/home/wishnu/blog/ImageMagick-6.8.9-4/tests:${PATH}"
+set +a
