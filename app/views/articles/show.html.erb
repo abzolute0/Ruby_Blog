@@ -1,21 +1,28 @@
 <p>
-	<strong>Title:</strong>
-	<%= @article.title %>
+	<font size="5">
+		<strong>Article Title :</strong>
+		<%= @article.title %>
+	</font>
 </p>
 
 <p>
-	<strong>Text:</strong>
-	<%= @article.text %>
+	<font size="3">
+		<strong>Article Content : </strong>
+		<%= @article.text %>
+	</font>
 </p>
 
 <hr/>
 
-<h2 style="color:blue;">Comments</h2>
+<h2 style="color:green;">Comments</h2>
 <%= render @article.comments %>
  
-<hr />
+<hr /><hr />
  
 <h2 style="color:blue;">Add a comment :</h2>
 <%= render "comments/form" %>
 
-<%= link_to 'Back to Articles', articles_path, :class  => "text-primary"  %>
+<hr />
+	To back to article list,
+	<%= link_to 'click here', articles_path, :class  => "text-primary"  %>
+<hr />
