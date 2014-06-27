@@ -21,7 +21,7 @@
 				<strong>Comment   :</strong>
 				<%= comment.body %>
 				<% if comment.approved == 0 && (comment.article.user_id == current_user.id) && (comment.user_id != current_user.id)  %>
-					<p style="color:red;"> This comment hasn't been approved yet <p>
+					<p class="label label-warning"> This comment hasn't been approved yet <p>
 				<% end %>
 			</p>
 
@@ -36,7 +36,7 @@
 			<strong>Comment :</strong>
 			<%= comment.body %>
 			<% if comment.approved == 0 %>
-				<p style="color:yellow;"> This comment hasn't been approved yet <p>
+				<p class="label label-warning"> This comment hasn't been approved yet <p>
 			<% end %>
 		</p>
 		<hr />
@@ -58,7 +58,7 @@
 				
 					<%= link_to 'Reject Comment', [comment.article, comment],
 								method: :delete,
-								data: { confirm: 'Are you sure?' }, :class => "btn btn-warning" %>
+								data: { confirm: 'Are you sure?' }, :class => "btn btn-danger" %>
 					<hr />
 				<% end %>
 			<% end %>
