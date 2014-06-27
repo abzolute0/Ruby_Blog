@@ -9,10 +9,12 @@ class CommentsController < ApplicationController
 			if (@article.user_id == current_user.id)
 				@comment.approved = 1
 				@comment.save
+				flash[:notice] = "Comment created"
 				redirect_to article_path(@article)
 			else
 				@comment.approved = 0
 				@comment.save
+				flash[:notice] = "Comment created"
 				redirect_to article_path(@article)
 			end
 		else
@@ -28,7 +30,8 @@ class CommentsController < ApplicationController
 			@comment.approved = 0;
 			@comment.destroy
 			
-			redirect_to article_path(@article)
+			redirect_to article_path(@article),
+			alert: "Comment deleted"
 		else
 			redirect_to new_user_session_path
 		end
@@ -42,8 +45,8 @@ class CommentsController < ApplicationController
 			if (@article.user_id = current_user.id)
 				@comment.approved = 1
 				@comment.save
-				redirect_to article_path(@article),
-				alert: "Comment approved"
+				redirect_to article_path(@article)
+				flash[:notice] = "Comment approved"
 			else
 				redirect_to article_path(@article),
 				alert: "This is not you comment	"

@@ -37,13 +37,6 @@
     <%= javascript_include_tag "application" %>
   </head>
   <body>
-      
-    <% if notice %>
-        <p class="alert alert-success"><%= notice %></p>
-    <% end %>
-    <% if alert %>
-      <p class="alert alert-danger"><%= alert %></p>
-    <% end %>
     
     <%= nav_bar :fluid => :top, :brand => "BLOG", :responsive => true do %>
         <%= menu_group do %>
@@ -61,6 +54,12 @@
         <% end %>
     <% end %>
     
+    <% if notice %>
+        <p class="alert alert-success"><%= notice %></p>
+    <% end %>
+    <% if alert %>
+        <p class="alert alert-danger"><%= alert %></p>
+    <% end %>
 
     <div class="container-fluid">
       <div class="row-fluid">
@@ -80,8 +79,8 @@
         </div>
       </div><!--/row-->
 
-      <footer>
-        <p>&copy; Company 2014</p>
+      <footer style: "margin-top : 500px;">
+        <p class="text-center">&copy; Company 2014</p>
       </footer>
 
     </div> <!-- /container -->

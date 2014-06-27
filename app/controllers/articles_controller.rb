@@ -8,8 +8,8 @@ class ArticlesController < ApplicationController
 		if user_signed_in? 
 			@article = Article.new
 		else
-			flash[:notice] = "You're not signed in, Please sign in first to create new Article"
-			redirect_to new_user_session_path
+			redirect_to new_user_session_path,
+			alert: "You're not signed in, Please sign in first to create new Article"
 		end
 	end
 	

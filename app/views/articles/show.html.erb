@@ -8,10 +8,12 @@
 	<%= @article.text %>
 </p>
 
-<h2>Comments</h2>
+<hr/>
+
+<h2 style="color:blue;">Comments</h2>
 <%= render @article.comments %>
  
-<h2>Add a comment:</h2>
+<h2 style="color:blue;">Add a comment :</h2>
 <%= render "comments/form" %>
 
-<%= link_to 'Back to Articles', articles_path %>
+<%= link_to 'Back to Articles', articles_path, :class  => "text-primary"  %>
