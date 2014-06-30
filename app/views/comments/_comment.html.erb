@@ -20,12 +20,12 @@
 			
 			<p>
 				<strong>Comment   :</strong>
-				<%= comment.body %>
+				<%= raw comment.body %>
 				<% if comment.approved == 0 && (comment.article.user_id == current_user.id) && (comment.user_id != current_user.id)  %>
 					<p class="label label-warning"> This comment hasn't been approved yet <p>
 				<% end %>
 			</p>
-	
+			
 		<% end %>
 	<% else %>
 		<p>
@@ -35,7 +35,7 @@
 		
 		<p>
 			<strong>Comment :</strong>
-			<%= comment.body %>
+			<%= raw comment.body %>
 			<% if comment.approved == 0 %>
 				<p class="label label-warning"> This comment hasn't been approved yet <p>
 			<% end %>
